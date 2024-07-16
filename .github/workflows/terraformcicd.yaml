@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -41,7 +40,7 @@ jobs:
     env:
       PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
     with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GH_TOKEN }}
       script: |
         const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
         #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
