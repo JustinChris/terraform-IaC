@@ -1,0 +1,36 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+  run:
+    working-directory: ${{ env.tf_actions_working_dir }}
+  permissions:
+    pull-requests: write
+  steps:
+  - uses: actions/checkout@v4
+  - uses: hashicorp/setup-terraform@v3
+
+  - name: Terraform fmt
+    id: fmt
+    run: terraform fmt -check
+    continue-on-error: true
+
+  - name: Terraform Init
+    id: init
+    run: terraform init
+
+  - name: Terraform Validate
+    id: validate
+    run: terraform validate -no-color
+
+  - name: Terraform Plan
+    id: plan
+    run: terraform apply
+    continue-on-error: true
