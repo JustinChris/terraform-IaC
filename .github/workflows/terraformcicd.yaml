@@ -6,8 +6,6 @@ jobs:
     name: terraform plan
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    run:
-      working-directory: ${{ env.tf_actions_working_dir }}
     permissions:
       pull-requests: write
     steps:
