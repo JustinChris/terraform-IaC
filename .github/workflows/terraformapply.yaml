@@ -18,7 +18,7 @@ jobs:
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Terraform Init
         id: init
@@ -31,4 +31,4 @@ jobs:
       - name: Terraform apply
         id: plan
         run: terraform apply
-        continue-on-error: true
+        continue-on-error: false
